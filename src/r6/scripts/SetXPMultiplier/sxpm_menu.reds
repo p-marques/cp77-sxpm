@@ -1,6 +1,3 @@
-// Set XP Multiplier by pMarK
-// v2.0
-
 module SetXPMult.Menu
 import SetXPMult.Base.SXPM
 
@@ -9,7 +6,7 @@ public class SXPMWithMenu extends SXPM {
 
     public func Setup() -> Void {
         this.menuSettings = new SXPMMenu();
-        ModSettings.RegisterListenerToClass(this.menuSettings);
+        SXPM_RegisterMenu(this.menuSettings);
     }
 
     protected func GetMultiplier(type: gamedataProficiencyType) -> Float {
@@ -170,4 +167,12 @@ public class SXPMMenu {
     @runtimeProperty("ModSettings.min", "0.0")
     @runtimeProperty("ModSettings.max", "10.0")
     public let NinjutsuXPMultiplier: Float = 1.0;
+}
+
+@if(!ModuleExists("ModSettingsModule"))
+public func SXPM_RegisterMenu(listener: ref<IScriptable>) {}
+
+@if(ModuleExists("ModSettingsModule"))
+public func SXPM_RegisterMenu(listener: ref<IScriptable>) {
+    ModSettings.RegisterListenerToClass(listener);
 }

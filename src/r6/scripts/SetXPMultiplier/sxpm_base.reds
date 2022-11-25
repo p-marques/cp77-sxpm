@@ -1,6 +1,3 @@
-// Set XP Multiplier by pMarK
-// v2.0
-
 module SetXPMult.Base
 
 public class SXPM extends IScriptable {
