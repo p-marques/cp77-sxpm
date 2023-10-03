@@ -1,9 +1,6 @@
 module SetXPMult.Overrides
 import SetXPMult.Base.SXPM
 
-@if(ModuleExists("ModSettingsModule"))
-import SetXPMult.Menu.SXPMWithMenu
-
 @addField(PlayerDevelopmentSystem)
 private let sxpm: ref<SXPM>;
 
@@ -25,13 +22,6 @@ private func OnExperienceAdded(request: ref<AddExperience>) -> Void {
 	wrappedMethod(request);
 }
 
-@if(ModuleExists("ModSettingsModule"))
-@addMethod(PlayerDevelopmentSystem)
-private func SXPM_Initialize() -> Void {
-    this.sxpm = new SXPMWithMenu();
-}
-
-@if(!ModuleExists("ModSettingsModule"))
 @addMethod(PlayerDevelopmentSystem)
 private func SXPM_Initialize() -> Void {
     this.sxpm = new SXPM();
